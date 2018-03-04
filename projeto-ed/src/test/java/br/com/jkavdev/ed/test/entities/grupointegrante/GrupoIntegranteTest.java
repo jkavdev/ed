@@ -57,11 +57,11 @@ public class GrupoIntegranteTest extends BaseTest {
 	@Test
 	public void shouldRemoveAIntegranteFromAGrupo() {
 		beginTransaction();
-		StatusGrupo statusGrupo = new StatusGrupo("Novo Status Grupo");
+		StatusGrupo statusGrupo = new StatusGrupo("Novo Status Grupo 2");
 		Grupo grupo = new Grupo("Novo Grupo", statusGrupo);
 		
-		Integrante integrante = new Integrante("Jhonatan", 21, "jhonatan@gmail.com", "12345678", criaEndereco(), criaComplemento());
-		Integrante integrante1 = new Integrante("Lucas", 15, "lucas@gmail.com", "12345678", criaEndereco(), criaComplemento());
+		Integrante integrante = new Integrante("Jhonatan", 21, "jhonatan1@gmail.com", "12345678", criaEndereco(), criaComplemento());
+		Integrante integrante1 = new Integrante("Lucas", 15, "lucas1@gmail.com", "12345678", criaEndereco(), criaComplemento());
 		
 		getManager().persist(statusGrupo);
 		getManager().persist(integrante);
