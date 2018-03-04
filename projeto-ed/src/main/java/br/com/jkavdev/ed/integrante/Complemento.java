@@ -36,4 +36,19 @@ public class Complemento {
 	@Column(name = "alergia")
 	private String qualAlergia;
 
+	public Complemento(String nomeMae, String nomePai, String celularMae, String celularPai, String observacao, String qualMedicamento, String qualAlergia) {
+		this.nomeMae = nomeMae;
+		this.nomePai = nomePai;
+		this.celularMae = celularMae;
+		this.celularPai = celularPai;
+		this.observacao = observacao;
+		this.qualMedicamento = qualMedicamento;
+		this.qualAlergia = qualAlergia;
+	}
+
+	@Override
+	public String toString() {
+		return "Complemento id=" + id;
+	}
+	
 }

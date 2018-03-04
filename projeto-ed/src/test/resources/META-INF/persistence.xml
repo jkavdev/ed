@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+		http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="edTestPU" transaction-type="RESOURCE_LOCAL">
+
+		<class>br.com.jkavdev.ed.grupo.Grupo</class>
+		<class>br.com.jkavdev.ed.grupointegrante.GrupoIntegrante</class>
+		<class>br.com.jkavdev.ed.integrante.Complemento</class>
+		<class>br.com.jkavdev.ed.integrante.Endereco</class>
+		<class>br.com.jkavdev.ed.integrante.Integrante</class>
+		<class>br.com.jkavdev.ed.statusgrupo.StatusGrupo</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;INIT=RUNSCRIPT FROM 'classpath:create.sql'\;RUNSCRIPT FROM 'classpath:data.sql'" />
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

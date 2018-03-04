@@ -33,4 +33,18 @@ public class Endereco {
 	@Column
 	private String complemento;
 
+	public Endereco(String logradouro, String numero, String cidade, String uf, String cep, String complemento) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.cep = cep;
+		this.complemento = complemento;
+	}
+
+	@Override
+	public String toString() {
+		return "Endereco logradouro=" + logradouro + ", numero=" + numero + ", cep=" + cep;
+	}
+	
 }
