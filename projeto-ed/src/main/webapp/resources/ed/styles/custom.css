@@ -26,3 +26,7 @@ body {
 		border: none;
 	}
 }
+
+.ui-growl {   
+    top: 60px !important;
+}

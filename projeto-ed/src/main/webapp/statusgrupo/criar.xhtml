@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	
+	<ui:define name="content">
+	
+		<f:metadata>
+			<f:viewParam name="statusgrupo" value="#{statusGrupoBean.statusGrupo}" converter="#{statusGrupoConverter}"/>
+		</f:metadata>
+	
+		<h1 class="aw-page-title">Status Grupo</h1>
+		
+		<h:form id="frm">
+			
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" action="#{statusGrupoBean.salvar}"
+						process="@this capaPanel" update="@form" />
+					<p:commandButton value="Limpar" update="capaPanel" process="@this" 
+						actionListener="#{statusGrupoBean.limparForm()}"  style="margin-right:20px;" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/statusgrupo/listar"/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:growl autoUpdate="false" life="2000"/>
+			
+			<div class="ui-fluid">
+				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
+					style="margin-top: 20px; margin-bottom: 40px"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
+				
+					<p:outputLabel value="Nome do Status" for="nome" />
+					<p:inputText id="nome" value="#{statusGrupoBean.statusGrupo.nome}" />
+					
+				</p:panelGrid>
+			</div>
+			
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
