@@ -51,7 +51,7 @@ public class Integrante {
 	private Complemento complemento = Complemento.empty();
 
 	@OneToMany(mappedBy = "integrante", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Collection<GrupoIntegrante> grupos = Collections.emptyList();
+	private Collection<GrupoIntegrante> grupos = Collections.emptySet();
 	
 	private Integrante() {}
 
@@ -62,6 +62,7 @@ public class Integrante {
 		this.celular = celular;
 		this.endereco = endereco;
 		this.complemento = complemento;
+		this.grupos = Collections.emptySet();
 	}
 	
 	public static Integrante empty() {
@@ -72,6 +73,7 @@ public class Integrante {
 		integrante.idade = 0;
 		integrante.endereco = Endereco.empty();
 		integrante.complemento = Complemento.empty();
+		integrante.grupos = Collections.emptySet();
 		return integrante;
 	}
 	
