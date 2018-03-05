@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.common.base.MoreObjects;
+
 @Entity
 @Table(name = "complemento_integrante")
 public class Complemento {
@@ -35,6 +37,8 @@ public class Complemento {
 
 	@Column(name = "alergia")
 	private String qualAlergia;
+	
+	protected Complemento() {}
 
 	public Complemento(String nomeMae, String nomePai, String celularMae, String celularPai, String observacao, String qualMedicamento, String qualAlergia) {
 		this.nomeMae = nomeMae;
@@ -45,10 +49,52 @@ public class Complemento {
 		this.qualMedicamento = qualMedicamento;
 		this.qualAlergia = qualAlergia;
 	}
+	
+	public static Complemento empty() {
+		Complemento complemento = new Complemento();
+		complemento.nomeMae = "";
+		complemento.nomePai = "";
+		complemento.celularMae = "";
+		complemento.celularPai = "";
+		complemento.observacao = "";
+		complemento.qualMedicamento = "";
+		complemento.qualAlergia = "";
+		return complemento;
+	}
+	
+	public String getNomeMae() {
+		return nomeMae;
+	}
+	public String getNomePai() {
+		return nomePai;
+	}
+	public String getCelularMae() {
+		return celularMae;
+	}
+	public String getCelularPai() {
+		return celularPai;
+	}
+	public String getObservacao() {
+		return observacao;
+	}
+	public String getQualMedicamento() {
+		return qualMedicamento;
+	}
+	public String getQualAlergia() {
+		return qualAlergia;
+	}
 
 	@Override
 	public String toString() {
-		return "Complemento id=" + id;
+		return  MoreObjects.toStringHelper(this)
+				.add("id", id)
+				.add("nomeMae", nomeMae)
+				.add("nomePai", nomePai)
+				.add("celularMae", celularMae)
+				.add("celularPai", celularPai)
+				.add("observacao", observacao)
+				.add("qualMedicamento", qualMedicamento)
+				.add("qualAlergia", qualAlergia).toString();
 	}
 	
 }

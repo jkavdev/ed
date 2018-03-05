@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+
+	<ui:define name="content">
+
+		<h1 class="aw-page-title">Integrante</h1>
+
+		<h:form id="form">
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar"
+						action="#{integranteBean.pesquisar()}" process="@this"
+						update="@form" />
+					<p:commandButton value="Limpar" update="integrantesTable" process="@this"
+						actionListener="#{integranteBean.reset()}"
+						style="margin-right:20px;" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:messages autoUpdate="false" />
+
+			<div class="ui-fluid">
+				<p:dataTable id="integrantesTable" value="#{integranteBean.integrantes}"
+					var="inte" emptyMessage="Nenhum integrante adicionado."
+					reflow="true" style="margin-top: 10px">
+					<p:column headerText="Nome">
+						<h:outputText value="#{inte.nome}" />
+					</p:column>
+					<p:column headerText="E-mail">
+						<h:outputText value="#{inte.email}" />
+					</p:column>
+					<p:column headerText="Celular">
+						<h:outputText value="#{inte.celular}" />
+					</p:column>
+					<p:column headerText="Ações">
+						<p:panelGrid columns="4" layout="grid"
+							styleClass="ui-panelgrid-blank"
+							columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
+							<p:commandButton update=":form:enderecoInfo" oncomplete="PF('mostrarEndereco').show()" icon="ui-icon-search" title="Ver endereço"
+								action="#{integranteBean.integranteComEndereco()}">
+				                <f:setPropertyActionListener value="#{inte}" target="#{integranteBean.integrante}" />
+				            </p:commandButton>
+							<p:commandButton update=":form:complementoInfo" oncomplete="PF('mostrarComplemento').show()" icon="ui-icon-search" title="Ver complemento"
+								action="#{integranteBean.integranteComComplemento()}">
+				                <f:setPropertyActionListener value="#{inte}" target="#{integranteBean.integrante}" />
+				            </p:commandButton>
+							<p:button outcome="listar" icon="ui-icon-image"
+								title="Ver grupos" />
+							<p:button icon="ui-icon-trash" title="Excluir" process="@this" />
+						</p:panelGrid>
+					</p:column>
+				</p:dataTable>
+			</div>
+			
+			<p:dialog id="enderecoDialog" header="Endereço" widgetVar="mostrarEndereco" modal="true"
+				esizable="false" style="min-width: 300px" responsive="true">
+				<h:panelGroup id="enderecoPanel" layout="block" styleClass="ui-fluid">
+					<p:outputPanel id="enderecoInfo" style="text-align:center;">
+			            <p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+							columnClasses="ui-grid-col-4, ui-grid-col-8">
+			                <h:outputText value="Logradouro:" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.logradouro}" />
+			                <h:outputText value="Número" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.numero}" />
+			                <h:outputText value="Cidade:" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.cidade}" />
+			                <h:outputText value="UF:" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.uf.toUpperCase()}" />
+			                <h:outputText value="CEP:" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.cep}" />
+			                <h:outputText value="Complemento:" />
+			                <h:outputText value="#{integranteBean.integrante.endereco.complemento}" />
+			            </p:panelGrid>
+			        </p:outputPanel>
+				</h:panelGroup>
+			</p:dialog>
+			<p:dialog id="complementoDialog" header="Complemento" widgetVar="mostrarComplemento" modal="true"
+				esizable="false" style="min-width: 300px" responsive="true">
+				<h:panelGroup id="complementoPanel" layout="block" styleClass="ui-fluid">
+					<p:outputPanel id="complementoInfo" style="text-align:center;">
+			            <p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+							columnClasses="ui-grid-col-4, ui-grid-col-8">
+			                <h:outputText value="Nome da Mãe" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.nomeMae}" />
+			                <h:outputText value="Contato da Mãe" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.celularMae}" />
+			                <h:outputText value="Nome do Pai" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.nomePai}" />
+			                <h:outputText value="Contato do Pai" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.celularPai}" />
+			                <h:outputText value="Medicamento:" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.qualMedicamento}" />
+			                <h:outputText value="Alergia:" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.qualAlergia}" />
+			                <h:outputText value="Observação:" />
+			                <h:outputText value="#{integranteBean.integrante.complemento.observacao}" />
+			            </p:panelGrid>
+			        </p:outputPanel>
+		        </h:panelGroup>
+			</p:dialog>  
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
