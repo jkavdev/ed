@@ -1,5 +1,8 @@
 package br.com.jkavdev.ed.exceptions;
 
+import javax.ejb.ApplicationException;
+
+@ApplicationException(rollback = false)
 public class EDException extends RuntimeException {
 
 	public EDException() {

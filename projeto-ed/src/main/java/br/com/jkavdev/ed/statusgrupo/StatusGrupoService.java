@@ -1,41 +1,53 @@
 package br.com.jkavdev.ed.statusgrupo;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.PersistenceException;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import org.hibernate.service.spi.Manageable;
+import org.apache.log4j.Logger;
 
 import br.com.jkavdev.ed.exceptions.EDException;
 
 @Stateless
+@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 public class StatusGrupoService implements Serializable {
-	
-	private static final long serialVersionUID = -8174033469079395973L;
-	
-	@Inject
-	private StatusGrupoRepository statusGrupoRepository;
 
-	public void salvar(StatusGrupo statusGrupo) throws EDException {
-		try {
-			if(fetchStatusGrupo(statusGrupo.getNome()).isPresent())
-				throw new EDException("Já existe Status Grupo com o nome: " + statusGrupo.getNome());
-			
-			statusGrupoRepository.salvar(statusGrupo);
-		} catch (PersistenceException e) {
-			throw new EDException(e);
-		}
+	private static final long serialVersionUID = -8174033469079395973L;
+
+	private static final Logger LOGGER = Logger.getLogger(StatusGrupoService.class);
+
+	@PersistenceContext
+	private EntityManager manager;
+
+	public List<StatusGrupo> todosStatus() {
+		LOGGER.info("todosStatus........");
+		return manager.createQuery("FROM StatusGrupo", StatusGrupo.class).getResultList();
 	}
-	
-	public Optional<StatusGrupo> fetchStatusGrupo(String nome) {
-		return statusGrupoRepository.porNome(nome);
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void salvar(StatusGrupo statusGrupo) throws EDException {
+		LOGGER.info("salvar........");
+		if(porNome(statusGrupo.getNome()).isPresent())
+				throw new EDException("Status grupo : " + statusGrupo.getNome() + ", escolha outro nome");
+		
+		manager.persist(statusGrupo);
+	}
+
+	public Optional<StatusGrupo> porNome(String nome) {
+		LOGGER.info("porNome........");
+		return manager.createQuery("FROM StatusGrupo WHERE nome = :nome", StatusGrupo.class).setParameter("nome", nome)
+				.getResultList().stream().findFirst();
 	}
 
 	public StatusGrupo peloId(Long id) {
-		return statusGrupoRepository.peloId(id);
+		LOGGER.info("peloId........");
+		return manager.find(StatusGrupo.class, id);
 	}
 
 }

@@ -13,14 +13,14 @@ import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 
+import br.com.jkavdev.ed.exceptions.EDException;
+
 @Named
 @ViewScoped
 public class StatusGrupoBean implements Serializable {
 
-	private static final Logger LOGGER = Logger.getLogger(StatusGrupoRepository.class);
+	private static final Logger LOGGER = Logger.getLogger(StatusGrupoBean.class);
 
-	@Inject
-	private StatusGrupoRepository statusGrupoRepository;
 	@Inject
 	private StatusGrupoService statusGrupoService;
 
@@ -39,15 +39,14 @@ public class StatusGrupoBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Status Grupo salvo!", "Status Grupo salvo!"));
 			statusGrupo = StatusGrupo.empty();
-		} catch (Exception e) {
-			statusGrupo = StatusGrupo.empty();
+		} catch (EDException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					e.getCause().getMessage(), e.getCause().getMessage()));
+					e.getMessage(), e.getMessage()));
 		}
 	}
 
 	public void pesquisar() {
-		statusGrupos = statusGrupoRepository.allStatusGrupos();
+		statusGrupos = statusGrupoService.todosStatus();
 	}
 
 	public void limparForm() {
