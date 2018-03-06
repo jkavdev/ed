@@ -2,9 +2,10 @@ package br.com.jkavdev.ed.integrante;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.google.common.base.MoreObjects;
@@ -14,7 +15,6 @@ import com.google.common.base.MoreObjects;
 public class Complemento {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "nome_mae")
@@ -37,6 +37,10 @@ public class Complemento {
 
 	@Column(name = "alergia")
 	private String qualAlergia;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@MapsId
+	private Integrante integrante;
 	
 	protected Complemento() {}
 
@@ -83,6 +87,9 @@ public class Complemento {
 	public String getQualAlergia() {
 		return qualAlergia;
 	}
+	public void setIntegrante(Integrante integrante) {
+		this.integrante = integrante;
+	}
 
 	@Override
 	public String toString() {
@@ -96,5 +103,5 @@ public class Complemento {
 				.add("qualMedicamento", qualMedicamento)
 				.add("qualAlergia", qualAlergia).toString();
 	}
-	
+
 }

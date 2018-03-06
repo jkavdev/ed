@@ -42,11 +42,11 @@ public class Integrante {
 	@Column
 	private String celular;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(mappedBy = "integrante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco = Endereco.empty();
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(mappedBy = "integrante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "complemento_id")
 	private Complemento complemento = Complemento.empty();
 
@@ -60,11 +60,11 @@ public class Integrante {
 		this.idade = idade;
 		this.email = email;
 		this.celular = celular;
-		this.endereco = endereco;
-		this.complemento = complemento;
+		setEndereco(endereco);
+		setComplemento(complemento);
 		this.grupos = Collections.emptySet();
 	}
-	
+
 	public static Integrante empty() {
 		Integrante integrante = new Integrante();
 		integrante.nome = "";
@@ -97,6 +97,14 @@ public class Integrante {
 	}
 	public Collection<GrupoIntegrante> getGrupos() {
 		return grupos;
+	}
+	private void setComplemento(Complemento complemento) {
+		this.complemento = complemento;
+		complemento.setIntegrante(this);
+	}
+	private void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+		endereco.setIntegrante(this);
 	}
 
 	@Override
