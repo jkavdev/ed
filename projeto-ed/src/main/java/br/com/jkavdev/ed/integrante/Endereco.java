@@ -2,12 +2,9 @@ package br.com.jkavdev.ed.integrante;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.google.common.base.MoreObjects;
@@ -17,6 +14,7 @@ import com.google.common.base.MoreObjects;
 public class Endereco {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column
@@ -36,10 +34,6 @@ public class Endereco {
 
 	@Column
 	private String complemento;
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
-	private Integrante integrante;
 	
 	//TODO tem que rever, esta dando erro ao atribui um construtor privado
 	//solucoes
@@ -84,9 +78,6 @@ public class Endereco {
 	}
 	public String getComplemento() {
 		return complemento;
-	}
-	public void setIntegrante(Integrante integrante) {
-		this.integrante = integrante;
 	}
 
 	@Override
