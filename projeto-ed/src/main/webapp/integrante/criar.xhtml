@@ -1,0 +1,120 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout.xhtml">
+	
+	<ui:define name="content">
+	
+		<f:metadata>
+			<f:viewParam name="integrante" value="#{integranteBean.integrante}" converter="#{integranteConverter}"/>
+		</f:metadata>
+	
+		<h1 class="aw-page-title">Integrante</h1>
+		
+		<h:form>
+		    <p:growl id="growl" sticky="true" showDetail="true"/>
+		 
+		    <p:wizard>
+		        <p:tab id="integranteWizard" title="Integrante">
+		            <p:panel header="Informaçõs sobre o integrante">
+		                <p:messages />
+		                <h:panelGrid columns="2" columnClasses="label, value">
+		                    <h:outputLabel for="nome" value="Nome: " />
+		                    <p:inputText id="nome" value="#{integranteBean.integrante.nome}" required="true" label="Nome"/>
+		                    <h:outputLabel for="email" value="E-mail: " />
+        					<p:spinner id="email" value="#{integranteBean.integrante.email}"/>
+		                    <h:outputLabel for="celular" value="Celular: " />
+        					<p:inputMask id="celular" value="#{integranteBean.integrante.celular}" mask="(99) 9 9999-9999"/>
+		                </h:panelGrid>
+		            </p:panel>
+		        </p:tab>
+		 
+		        <p:tab id="endereco" title="Endereço">
+		            <p:panel header="Address Details">
+		                <p:messages />
+		                <h:panelGrid columns="2" columnClasses="label, value">
+		                    <h:outputLabel for="nomeMae" value="Nome da mãe: " />
+		                    <p:inputText id="nomeMae" value="#{integranteBean.integrante.complemento.nomeMae}" required="true" label="Nome da mãe"/>
+		                    <h:outputLabel for="celularMae" value="Celular da mãe: " />
+		                    <p:inputText id="celularMae" value="#{integranteBean.integrante.complemento.celularMae}" required="true" label="Celular da mãe"/>
+		                    <h:outputLabel for="nomePai" value="Nome do pai: " />
+		                    <p:inputText id="nomePai" value="#{integranteBean.integrante.complemento.nomePai}" required="true" label="Nome do pai"/>
+		                    <h:outputLabel for="celularPai" value="Celular do pai: " />
+		                    <p:inputText id="celularPai" value="#{integranteBean.integrante.complemento.celularPai}" required="true" label="Celular do pai"/>
+		                    <h:outputLabel for="observacao" value="Observação: " />
+		                    <p:inputText id="observacao" value="#{integranteBean.integrante.complemento.observacao}" required="true" label="Observação"/>
+		                    <h:outputLabel for="alergia" value="Alergia?: " />
+		                    <p:inputText id="alergia" value="#{integranteBean.integrante.complemento.qualAlergia}" required="true" label="Lergia"/>
+		                    <h:outputLabel for="medicamento" value="Medicamento?: " />
+		                    <p:inputText id="medicamento" value="#{integranteBean.integrante.complemento.qualMedicamento}" required="true" label="Medicamento"/>
+		                </h:panelGrid>
+		            </p:panel>
+		        </p:tab>
+		 
+		        <p:tab id="complemento" title="Complemento">
+		            <p:panel header="Contact Information">
+		                <p:messages />
+		                <h:panelGrid columns="2" columnClasses="label, value">
+		                    <h:outputText value="Email: *" />
+		                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+		 
+		                    <h:outputText value="Phone: " />
+		                    <p:inputText value="#{userWizard.user.phone}"/>
+		 
+		                    <h:outputText value="Additional Info: " />
+		                    <p:inputText value="#{userWizard.user.info}"/>
+		                </h:panelGrid>
+		            </p:panel>
+		        </p:tab>
+		 
+		        <p:tab id="confirm" title="Confirmation">
+		            <p:panel header="Confirmation">
+		                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+		                    <h:panelGrid columns="2" columnClasses="label, value">
+		                        <h:outputText value="Firstname: " />
+		                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="Lastname: " />
+		                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="Age: " />
+		                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+		                    </h:panelGrid>
+		 
+		                    <h:panelGrid columns="2" columnClasses="label, value">
+		                        <h:outputText value="Street: " />
+		                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="Postal: " />
+		                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="City: " />
+		                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+		                    </h:panelGrid>
+		 
+		                    <h:panelGrid columns="2" columnClasses="label, value">
+		                        <h:outputText value="Email: " />
+		                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="Phone " />
+		                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText value="Info: " />
+		                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+		 
+		                        <h:outputText />
+		                        <h:outputText />
+		                    </h:panelGrid>
+		                </h:panelGrid>
+		 
+		                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+		            </p:panel>
+		        </p:tab>
+		    </p:wizard>
+		 
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

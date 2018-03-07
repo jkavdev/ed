@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,7 +43,12 @@ public class IntegranteBean implements Serializable {
 	public void integranteComComplemento() {
 		integrante = integranteService.integranteComComplemento(integrante.getId());
 	}
-
+	
+	public void salvar() {
+		FacesMessage msg = new FacesMessage("Successful", "Welcome :" + integrante.getNome());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
 	public void reset() {
 		integrantes = Collections.emptyList();
 	}
