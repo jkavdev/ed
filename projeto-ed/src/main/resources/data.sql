@@ -1,5 +1,3 @@
-drop database if exists eddb;
-create database if not exists eddb;
 use eddb;
 
 insert into status_grupo(nome) values('Pastorais'); 
