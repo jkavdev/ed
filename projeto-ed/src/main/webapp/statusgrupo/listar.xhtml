@@ -21,7 +21,7 @@
 						style="margin-right:20px;" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button outcome="criar" value="Incluir Status Grupo" />
+					<p:button outcome="criar" value="Incluir" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -39,14 +39,14 @@
 							styleClass="ui-panelgrid-blank"
 							columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
 							<p:button outcome="/statusgrupo/criar" icon="ui-icon-pencil"
-								title="Editar">
+								title="Alterar status">
 								<f:param name="statusgrupo" value="#{sg.id}" />
 							</p:button>
 							<p:button outcome="listar" icon="ui-icon-newwin"
-								title="Gerenciar Integrantes" />
-							<p:button outcome="listar" icon="ui-icon-image"
-								title="Visualizar informações" />
-							<p:button icon="ui-icon-trash" title="Excluir" process="@this" />
+								title="Ver Grupos" />
+							<p:commandButton icon="ui-icon-trash" title="Remover status" process="@this" action="#{statusGrupoBean.remover()}">
+								<f:setPropertyActionListener value="#{sg.id}" target="#{statusGrupoBean.statusGrupo}" />
+							</p:commandButton>
 						</p:panelGrid>
 					</p:column>
 				</p:dataTable>

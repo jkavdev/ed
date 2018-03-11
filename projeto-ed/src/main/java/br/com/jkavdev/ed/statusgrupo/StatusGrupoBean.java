@@ -19,6 +19,7 @@ import br.com.jkavdev.ed.exceptions.EDException;
 @ViewScoped
 public class StatusGrupoBean implements Serializable {
 
+	private static final long serialVersionUID = 4344788270452835429L;
 	private static final Logger LOGGER = Logger.getLogger(StatusGrupoBean.class);
 
 	@Inject
@@ -57,11 +58,9 @@ public class StatusGrupoBean implements Serializable {
 	public List<StatusGrupo> getStatusGrupos() {
 		return statusGrupos;
 	}
-
 	public StatusGrupo getStatusGrupo() {
 		return statusGrupo;
 	}
-
 	public void setStatusGrupo(StatusGrupo statusGrupo) {
 		this.statusGrupo = statusGrupo;
 	}

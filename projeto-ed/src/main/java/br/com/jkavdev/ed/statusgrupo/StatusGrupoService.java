@@ -32,11 +32,22 @@ public class StatusGrupoService implements Serializable {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void salvar(StatusGrupo statusGrupo) throws EDException {
-		LOGGER.info("salvar........");
+		if(statusGrupo.getId() == null) {
+			inserir(statusGrupo);
+		} else {
+			atualizar(statusGrupo);
+		}
+	}
+
+	private void inserir(StatusGrupo statusGrupo) {
 		if(porNome(statusGrupo.getNome()).isPresent())
-				throw new EDException("Status grupo : " + statusGrupo.getNome() + ", escolha outro nome");
+				throw new EDException("Nome já utilizado: " + statusGrupo.getNome() + ", escolha outro nome");
 		
 		manager.persist(statusGrupo);
+	}
+	
+	private void atualizar(StatusGrupo statusGrupo) {
+		manager.merge(statusGrupo);
 	}
 
 	public Optional<StatusGrupo> porNome(String nome) {

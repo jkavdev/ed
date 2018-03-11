@@ -18,8 +18,8 @@
 			<p:toolbar>
 				<p:toolbarGroup>
 					<p:commandButton value="Salvar" action="#{statusGrupoBean.salvar}"
-						process="@this capaPanel" update="@form" />
-					<p:commandButton value="Limpar" update="capaPanel" process="@this" 
+						process="@this statusPanel" update="@form" />
+					<p:commandButton value="Limpar" update="statusPanel" process="@this" 
 						actionListener="#{statusGrupoBean.limparForm()}"  style="margin-right:20px;" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
@@ -27,18 +27,20 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:growl autoUpdate="false" life="2500"/>
+			<p:messages autoUpdate="false" closable="true"/>
 			
 			<div class="ui-fluid">
-				<p:panelGrid id="capaPanel" columns="4" layout="grid" 
-					style="margin-top: 20px; margin-bottom: 40px"
-					styleClass="panelgrid-noborder"
-					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
-				
-					<p:outputLabel value="Nome do Status" for="nome" />
-					<p:inputText id="nome" value="#{statusGrupoBean.statusGrupo.nome}" />
+				<p:panel header="Informações de Status Grupo" style="margin-top: 10px;">
+					<p:panelGrid id="statusPanel" columns="2" layout="grid" 
+						style="margin-top: 20px; margin-bottom: 40px"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-2, ui-grid-col-6">
 					
-				</p:panelGrid>
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome" value="#{statusGrupoBean.statusGrupo.nome}" />
+						
+					</p:panelGrid>
+			    </p:panel>
 			</div>
 			
 		</h:form>
