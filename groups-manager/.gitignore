@@ -22,3 +22,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/.tern-project
+
+*.faces-config.xml.jsfdia

@@ -1,0 +1,8 @@
+<datasource jta="true" jndi-name="java:jboss/datasources/groupsDS" pool-name="groupsDS" enabled="true" use-ccm="true">
+    <connection-url>jdbc:mysql://localhost:3306/groups?serverTimezone=America/Sao_Paulo&amp;useSSL=false&amp;createDatabaseIfNotExist=true</connection-url>
+    <driver>mysql6</driver>
+    <security>
+        <user-name>jkavdev</user-name>
+        <password>123456</password>
+    </security>
+</datasource>
