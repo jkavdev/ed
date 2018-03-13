@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.google.common.base.MoreObjects;
 
 import br.com.jkavdev.groups.evento.Evento;
@@ -23,8 +25,10 @@ public class Grupo {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank
 	private String nome;
 	
+	@NotBlank
 	private String igreja;
 	
 	@ManyToMany
@@ -53,6 +57,19 @@ public class Grupo {
 		empty.nome = "";
 		empty.igreja = "";
 		return empty;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getIgreja() {
+		return igreja;
+	}
+	public void setIgreja(String igreja) {
+		this.igreja = igreja;
 	}
 	
 	@Override

@@ -7,7 +7,7 @@
 	<artifactId>groups-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<name>groups-manager</name>
 	<description>Projeto de ED para gerenciamento de grupos de Igreja</description>
 
@@ -55,6 +55,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.2.13.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.7.Final</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
