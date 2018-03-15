@@ -19,101 +19,18 @@
 			
 			<p:messages autoUpdate="false" />
 			
-			<p:outputPanel>
-        <div class="ui-grid">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">Col1</div>
-                <div class="ui-grid-col-4">Col2</div>
-                <div class="ui-grid-col-4">Col2</div>
-            </div>
-        </div>
-
-        <div class="ui-grid">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-8">8</div>
-            </div>
-        </div>
-
-        <div class="ui-grid">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-            </div>
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-4">4</div>
-            </div>
-        </div>
-
-        <div class="ui-grid ui-grid-responsive">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-8">8</div>
-            </div>
-        </div>
-
-        <div class="ui-grid ui-grid-fixed">
-            <div class="ui-grid-row">
-                <div class="ui-grid-col-4">4</div>
-                <div class="ui-grid-col-8">8</div>
-            </div>
-        </div>
-    </p:outputPanel>
-			
-<!-- 			<div class="ui-fluid"> -->
-<!-- 			    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-6" layout="grid" styleClass="panelgrid-noborder"> -->
-<!-- 			        <p:outputLabel for="input" value="Input"/> -->
-<!-- 			        <p:inputText id="input"/> -->
-			 
-<!-- 			        <p:outputLabel for="area" value="Textarea"/> -->
-<!-- 			        <p:inputTextarea id="area"/> -->
-<!-- 				</p:panelGrid> -->
-<!-- 				<div class="ui-grid  ui-grid-responsive"> -->
-<!-- 					<div class="ui-grid-row"> -->
-<!-- 						<div class="ui-grid-col-7"> -->
-<!-- 							<p:textEditor widgetVar="noticiaEditor" height="100" style="margin-bottom:10px" value="#{noticiaController.noticia.corpo}" /> -->
-<!-- 						</div> -->
-<!-- 						<div class="ui-grid-col-5"> -->
-<!-- 							<p:outputPanel id="contentPanel"> -->
-<!-- 								<p:outputLabel value="#{noticiaController.noticia.titulo}" /> -->
-<!-- 								<p:outputLabel value="JKAVDEV" /> -->
-<!-- 								<p:inputTextarea value="#{noticiaController.noticia.corpo}" /> -->
-<!-- 							</p:outputPanel> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			
-<!-- 			<div class="ui-grid  ui-grid-responsive"> -->
-<!-- 				<div class="ui-grid-row"> -->
-<!-- 					<div class="ui-grid-col-7" style="float:left"> -->
-<!-- 						<p:panelGrid columns="2" layout="grid" id="panelGrupo" -->
-<!-- 						columnClasses="ui-grid-col-2, ui-grid-col-12" -->
-<!-- 						styleClass="panelgrid-noborder"> -->
-<!-- 							<p:outputLabel value="Título" for="titulo" /> -->
-<!-- 							<p:inputText id="titulo" required="true" value="#{noticiaController.noticia.titulo}" /> -->
-<!-- 							<p:outputLabel value="Autor" for="autor" /> -->
-<!-- 							<p:inputMask id="autor" /> -->
-<!-- 						</p:panelGrid> -->
-<!-- 				    	<p:textEditor widgetVar="noticiaEditor" height="300" style="margin-bottom:10px" value="#{noticiaController.noticia.corpo}"/> -->
-<!-- 					</div> -->
-<!-- 					<div class="ui-grid-col-5"> -->
-<!-- 						<p:outputPanel id="contentPanel"> -->
-<!-- 							<p:outputLabel value="#{noticiaController.noticia.titulo}" /> -->
-<!-- 							<p:outputLabel value="JKAVDEV" /> -->
-<!-- 							<p:inputTextarea value="#{noticiaController.noticia.corpo}" /> -->
-<!-- 						</p:outputPanel> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="ui-fluid">
+			    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-6" layout="grid" styleClass="panelgrid-noborder">
+			        <p:outputLabel for="input" value="Input"/>
+			        <p:inputText id="input" value="#{noticiaController.noticia.titulo}"/>
+			        <p:outputLabel for="area" value="Textarea"/>
+			        <p:inputTextarea id="area" value="#{noticiaController.noticia.corpo}" />
+			        <p:outputLabel for="topicos" value="Tópicos"/>
+			         <p:selectManyCheckbox id="topicos" value="#{noticiaController.topicosA}" layout="responsive" columns="3">
+				        <f:selectItems value="#{noticiaController.topicos}" var="topico" itemLabel="#{topico.descricao}" itemValue="#{topico}" />
+				    </p:selectManyCheckbox>
+				</p:panelGrid>
+			</div>
 			
 		</h:form>
 	</ui:define>

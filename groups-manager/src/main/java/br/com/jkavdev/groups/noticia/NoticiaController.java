@@ -1,6 +1,8 @@
 package br.com.jkavdev.groups.noticia;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -16,18 +18,28 @@ public class NoticiaController implements Serializable {
 	private NoticiaService noticiaService;
 
 	private Noticia noticia = Noticia.empty();
+	
+	private Topico[] topicosA;
 
 	public void adicionar() {
-		noticiaService.adicionar(noticia);
+		noticia.adicionar(topicosA);
+		System.out.println(noticia.getTopicos());
 	}
 
+	public List<Topico> getTopicos(){
+		return Arrays.asList(Topico.values());
+	}
 	public Noticia getNoticia() {
-		System.out.println(noticia);
 		return noticia;
 	}
 	public void setNoticia(Noticia noticia) {
-		System.out.println(noticia);
 		this.noticia = noticia;
+	}
+	public Topico[] getTopicosA() {
+		return topicosA;
+	}
+	public void setTopicosA(Topico[] topicosA) {
+		this.topicosA = topicosA;
 	}
 
 }
