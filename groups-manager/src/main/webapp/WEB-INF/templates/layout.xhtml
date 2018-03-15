@@ -3,78 +3,39 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="#{facesContext.externalContext.requestContextPath}/resources/materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="#{facesContext.externalContext.requestContextPath}/resources/materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br/><br/>
-      <h4 class="header left orange-text"><ui:insert name="pageheader" /></h4>
-      <div class="row">
-        <h6 class="header col s12 light"><ui:insert name="pagedescription" /></h6>
-      </div>
-    </div>
-  </div>
+	<title>AlgaWorks</title>
 
-  <div class="container">
-    <div class="section">
+	<h:outputStylesheet library="groups" name="styles/custom.css" />
+	<h:outputStylesheet library="groups" name="styles/layout.css" />
+	<h:outputStylesheet library="groups" name="styles/components.css" />
+	
+	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
+	<h:outputScript target="body" library="groups" name="javascripts/app.js" />
+</h:head>
 
-      <div class="row">
-        <ui:insert name="content" />
-      </div>
+<h:body>
 
-    </div>
-    <br/><br/>
-  </div>
+	<header class="aw-topbar">
+		<h:graphicImage library="groups" name="images/logo.png" />
+		
+		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
+	</header>
+	
+	<aside class="aw-sidebar  js-sidebar">
+		<ui:include src="menu.xhtml" />
+	</aside>
+	
+	<section class="aw-content  js-content">
+		<ui:insert name="content" />
+	</section>
+	
+</h:body>
 
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      © 2014 Copyright Text
-      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="#{facesContext.externalContext.requestContextPath}/resources/materialize/js/materialize.js"></script>
-  <script src="#{facesContext.externalContext.requestContextPath}/resources/materialize/js/init.js"></script>
-
-  </body>
 </html>

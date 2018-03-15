@@ -6,22 +6,34 @@
 	template="/WEB-INF/templates/layout.xhtml">
 	
 	<ui:define name="content">
-		<h:form styleClass="col s12">
-	      <div class="row">
-	        <div class="input-field col s6">
-	          <h:inputText styleClass="validate" id="first_name" value="#{grupoController.grupo.nome}"/>
-	          <label for="first_name">Nome do grupo</label>
-	        </div>
-	        <div class="input-field col s6">
-	          <input id="last_name" type="text" class="validate" value="#{grupoController.grupo.igreja}"/>
-	          <label for="last_name">Nome da Igreja</label>
-	        </div>
-	      </div>
-	      <div class="row">
-	      <div class="col s12 m12 l12 center-align">
-	        <h:commandButton styleClass="btn waves-effect purple lighten-1" action="#{grupoController.adicionar()}" value="Adicionar" />
-	      </div>
-	    </div>
-	    </h:form>
+		<h1 class="aw-page-title">Cadastro de grupo</h1>
+		
+		<h:form id="frm">
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" action="#{grupoController.adicionar()}"
+						process="panelGrupo @this" update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/grupo/pesquisa" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<p:messages autoUpdate="false" />
+			
+			<div class="ui-fluid">
+				<p:panelGrid columns="2" layout="grid" id="panelGrupo"
+						columnClasses="ui-grid-col-2, ui-grid-col-4"
+						styleClass="panelgrid-noborder">
+					<p:outputLabel value="Nome do grupo" for="nome" />
+					<p:inputText id="nome" required="true" value="#{grupoController.grupo.nome}" />
+					
+					<p:outputLabel value="Nome da Igreja" for="nomeigreja" />
+					<p:inputMask id="nomeigreja" required="true" value="#{grupoController.grupo.igreja}" />
+			</p:panelGrid>
+		</div>
+			
+		</h:form>
 	</ui:define>
+	
 </ui:composition>
