@@ -1,4 +1,4 @@
-package br.com.jkavdev.groups.grupo;
+package br.com.jkavdev.groups.noticia;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
 import com.google.common.base.MoreObjects;
+
+import br.com.jkavdev.groups.grupo.Grupo;
 
 @Entity
 public class Noticia {
@@ -54,6 +56,19 @@ public class Noticia {
 		empty.corpo = "";
 		empty.grupo = Grupo.empty();
 		return empty;
+	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getCorpo() {
+		return corpo;
+	}
+	public void setCorpo(String corpo) {
+		this.corpo = corpo;
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-package br.com.jkavdev.groups.grupo;
+package br.com.jkavdev.groups.noticia;
 
 public enum Topico {
 	

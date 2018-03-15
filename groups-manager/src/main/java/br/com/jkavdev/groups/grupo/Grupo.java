@@ -18,6 +18,7 @@ import com.google.common.base.MoreObjects;
 
 import br.com.jkavdev.groups.evento.Evento;
 import br.com.jkavdev.groups.integrante.Integrante;
+import br.com.jkavdev.groups.noticia.Noticia;
 
 @Entity
 public class Grupo {
